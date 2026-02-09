@@ -19,7 +19,6 @@ namespace _2026_SoulLucy_backend.Controllers
             _context = context;
         }
 
-        // GET: Bookings
         public async Task<IActionResult> Index(string searchString)
         {
             var bookings = from b in _context.Bookings.Include(b => b.Room)
@@ -33,7 +32,6 @@ namespace _2026_SoulLucy_backend.Controllers
             return View(await bookings.ToListAsync());
         }
 
-        // GET: Bookings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -52,16 +50,12 @@ namespace _2026_SoulLucy_backend.Controllers
             return View(booking);
         }
 
-        // GET: Bookings/Create
         public IActionResult Create()
         {
             ViewData["RoomId"] = new SelectList(_context.Rooms, "Id", "Id");
             return View();
         }
 
-        // POST: Bookings/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,UserName,RoomId,StartTime,EndTime,Status")] Booking booking)
@@ -76,7 +70,6 @@ namespace _2026_SoulLucy_backend.Controllers
             return View(booking);
         }
 
-        // GET: Bookings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,9 +86,6 @@ namespace _2026_SoulLucy_backend.Controllers
             return View(booking);
         }
 
-        // POST: Bookings/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,RoomId,StartTime,EndTime,Status")] Booking booking)
@@ -129,7 +119,6 @@ namespace _2026_SoulLucy_backend.Controllers
             return View(booking);
         }
 
-        // GET: Bookings/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -148,7 +137,6 @@ namespace _2026_SoulLucy_backend.Controllers
             return View(booking);
         }
 
-        // POST: Bookings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -13,12 +13,11 @@ namespace _2026_SoulLucy_backend.Models
         public int RoomId { get; set; }
 
         [Required]
-        public DateTime StartTime { get; set; }
+        public DateTime StartTime { get; set; } = DateTime.UtcNow;
 
-        [Required]
-        public DateTime EndTime { get; set; }
+        public DateTime? EndTime { get; set; }
 
-        public string Status { get; set; } = "Pending"; // Pending, Approved, Rejected
+        public string Status { get; set; } = "Pending";
 
         public Room? Room { get; set; }
     }

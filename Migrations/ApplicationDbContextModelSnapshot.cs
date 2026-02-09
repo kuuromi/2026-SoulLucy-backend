@@ -2,8 +2,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using _2026_SoulLucy_backend.Data;
 
 #nullable disable
@@ -18,34 +18,34 @@ namespace _2026_SoulLucy_backend.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "10.0.2")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("_2026_SoulLucy_backend.Models.Booking", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("EndTime")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime?>("EndTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("RoomId")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("StartTime")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -58,24 +58,70 @@ namespace _2026_SoulLucy_backend.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Capacity")
-                        .HasColumnType("int");
+                        .HasColumnType("integer");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Facilities")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("text");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Capacity = 30,
+                            Facilities = "AC, Whiteboard, Proyektor, Wi-Fi",
+                            Name = "Ruang Kelas A",
+                            Status = "Available"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Capacity = 120,
+                            Facilities = "AC, Sound System, Proyektor, Wi-Fi",
+                            Name = "Ruang Kelas B",
+                            Status = "Available"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Capacity = 30,
+                            Facilities = "30 unit PC, AC, LAN, Proyektor",
+                            Name = "Computer Laboratorium",
+                            Status = "In Use"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Capacity = 50,
+                            Facilities = "Dolby Atmos, Recliner Seats, Peredam Suara",
+                            Name = "Mini Theater",
+                            Status = "Available"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Capacity = 200,
+                            Facilities = "Grand Stage, Sound System, Kapasitas Besar, AC",
+                            Name = "Auditorium",
+                            Status = "Available"
+                        });
                 });
 
             modelBuilder.Entity("_2026_SoulLucy_backend.Models.Booking", b =>

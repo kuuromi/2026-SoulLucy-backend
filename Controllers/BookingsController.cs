@@ -20,10 +20,17 @@ namespace _2026_SoulLucy_backend.Controllers
         }
 
         // GET: Bookings
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var applicationDbContext = _context.Bookings.Include(b => b.Room);
-            return View(await applicationDbContext.ToListAsync());
+            var bookings = from b in _context.Bookings.Include(b => b.Room)
+                           select b;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                bookings = bookings.Where(s => s.UserName.Contains(searchString));
+            }
+
+            return View(await bookings.ToListAsync());
         }
 
         // GET: Bookings/Details/5

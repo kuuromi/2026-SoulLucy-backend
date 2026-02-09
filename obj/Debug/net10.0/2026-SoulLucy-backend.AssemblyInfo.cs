@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("2026-SoulLucy-backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce44fff4ee1e91bd4f46c970f570237d01c4d71d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f2f9ddfc7bb81947b16e6631a8676e2346a4c43")]
 [assembly: System.Reflection.AssemblyProductAttribute("2026-SoulLucy-backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("2026-SoulLucy-backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

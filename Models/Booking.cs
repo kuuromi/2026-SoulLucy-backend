@@ -5,18 +5,11 @@ namespace _2026_SoulLucy_backend.Models
     public class Booking
     {
         public int Id { get; set; }
-
-        [Required]
-        public string UserName { get; set; } = string.Empty;
-
-        [Required]
+        public required string UserName { get; set; }
         public int RoomId { get; set; }
-
-        [Required]
-        public DateTime StartTime { get; set; } = DateTime.UtcNow;
-
-        public DateTime? EndTime { get; set; }
-
+        public string? Date { get; set; }
+        public string? Time { get; set; }
+        public string? Purpose { get; set; }
         public string Status { get; set; } = "Pending";
 
         public Room? Room { get; set; }

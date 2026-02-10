@@ -28,7 +28,10 @@ namespace _2026_SoulLucy_backend.Controllers
                     UserName = b.UserName,
                     RoomId = b.RoomId,
                     RoomName = b.Room != null ? b.Room.Name : "No Room",
-                    Status = b.Status
+                    Status = b.Status,
+                    Date = b.Date,
+                    Time = b.Time,
+                    Purpose = b.Purpose
                 })
                 .ToListAsync();
 
@@ -46,7 +49,9 @@ namespace _2026_SoulLucy_backend.Controllers
                 UserName = dto.UserName,
                 RoomId = dto.RoomId,
                 Status = dto.Status ?? "Pending",
-                StartTime = DateTime.UtcNow
+                Date = dto.Date,
+                Time = dto.Time,
+                Purpose = dto.Purpose
             };
 
             _context.Bookings.Add(newBooking);
@@ -66,6 +71,9 @@ namespace _2026_SoulLucy_backend.Controllers
 
             booking.UserName = dto.UserName;
             booking.RoomId = dto.RoomId;
+            booking.Date = dto.Date;
+            booking.Time = dto.Time;
+            booking.Purpose = dto.Purpose;
 
             _context.Entry(booking).State = EntityState.Modified;
             await _context.SaveChangesAsync();
